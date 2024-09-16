@@ -1,8 +1,8 @@
 ---
-title: "p8105_hw1)cm3936"
+title: "p8105_hw1_cm3936"
 author: "Carolyn Martinez"
 date: "2024-09-16"
-output: html_document
+output: github_document 
 ---
 
 ```{r setup, include=FALSE}
