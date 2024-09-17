@@ -7,9 +7,16 @@ output: github_document
 
 Problem 0.1 - Done 
 
-Problem 0.2 - In Progress  
-
 ```{r}
+usethis::create_github_token()
+
+gitcreds::gitcreds_set()
+```
+Problem 0.2 - In progress 
+```{r} 
+
+install.packages("palmerpenguins")
 ```
 
+```{r}
 
