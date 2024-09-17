@@ -9,7 +9,7 @@ Problem 0.1 - Done
 
 Problem 0.2 - In Progress  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
 ```
+
 
