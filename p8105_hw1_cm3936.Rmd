@@ -1,22 +1,31 @@
 ---
-title: "p8105_hw1_cm3936"
+title: "P8105_HW1_cm3936"
 author: "Carolyn Martinez"
+
 date: "2024-09-16"
 output: github_document 
 ---
 
 Problem 0.1 - Done 
 
-```{r}
-usethis::create_github_token()
+Problem 0.2 - Done 
 
-gitcreds::gitcreds_set()
+**Problem 1**
+
+_**Description of "penguins" dataset:**_
+```{r loading the data} 
+
+data("penguins", package = "palmerpenguins")
+
+mean_flipper=mean(pull(penguins,flipper_length_mm))
+
 ```
-Problem 0.2 - In progress 
-```{r} 
+This data set has `r nrow(penguins)` observations and `r ncol(penguins)` variables which include the species of penguin, the island, length of the bill (in mm), depth of the bill (in mm), length of the flipper (in mm), body mass (in grams), sex, and year. 
 
-install.packages("palmerpenguins")
-```
+The the data set has `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
 
-```{r}
+The mean flipper length is `r (mean_flipper)` millimeters. 
+
+
+
 
