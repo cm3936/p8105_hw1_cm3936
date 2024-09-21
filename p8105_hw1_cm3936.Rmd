@@ -5,7 +5,10 @@ author: "Carolyn Martinez"
 date: "2024-09-16"
 output: github_document 
 ---
+```{r loading libraries}
+library(ggplot2)
 
+```
 Problem 0.1 - Done 
 
 Problem 0.2 - Done 
@@ -15,16 +18,35 @@ Problem 0.2 - Done
 _**Description of "penguins" dataset:**_
 ```{r loading the data} 
 
-data("penguins", package = "palmerpenguins")
+penguins_data=data("penguins", package = "palmerpenguins")
 
-mean_flipper=mean(pull(penguins,flipper_length_mm))
+```
+
+```{r echo=FALSE}
+mean_flipper =
+    mean (penguins$flipper_length_mm, na.rm = TRUE, digits =2)
 
 ```
 This data set has `r nrow(penguins)` observations and `r ncol(penguins)` variables which include the species of penguin, the island, length of the bill (in mm), depth of the bill (in mm), length of the flipper (in mm), body mass (in grams), sex, and year. 
 
 The the data set has `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
 
-The mean flipper length is `r (mean_flipper)` millimeters. 
+The mean flipper length is `r round(mean_flipper, digits= 2)` millimeters. 
+
+_*Making the scatter plot*_
+
+```{r flippervbill_scatter}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color=species)) + geom_point()
+
+ggsave(filename="flippervbill.png", plot=last_plot)
+```
+
+
+
+
+
+
+
 
 
 
