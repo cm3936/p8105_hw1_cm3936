@@ -7,7 +7,9 @@ output: github_document
 ---
 ```{r loading libraries}
 library(ggplot2)
-
+library(tibble)
+library(tidyverse)
+set.seed(123)
 ```
 Problem 0.1 - Done 
 
@@ -36,18 +38,62 @@ The mean flipper length is `r round(mean_flipper, digits= 2)` millimeters.
 _*Making the scatter plot*_
 
 ```{r flippervbill_scatter}
-ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color=species)) + geom_point()
+set.seed(123)
+my_plot=ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color=species)) + geom_point()
 
-ggsave(filename="flippervbill.png", plot=last_plot)
+ggsave(filename="flippervbill.png", plot=my_plot)
+```
+**Problem 2**
+The code chunk below creates the requested data frame with: 
+- random sample of size 10 from a standard Normal distribution
+- logical vector indicating whether elements of the sample are greater than 0
+- character vector of length 10
+- factor vector of length 10, with 3 different factor “levels”
+
+```{r problem 2}
+homework_df = tibble (
+  norm_sample = rnorm(10),
+  norm_sample_pos = norm_sample > 0,
+  vec_char = length(10),
+  vec_factor = factor(rep(c("level1", "level2", "level3"), length.out =10))
+  
+)
 ```
 
+_*Taking the mean of the variables*_
+
+The mean of all the variables are as follows: 
+
+- mean of vec_char is `r mean(pull(homework_df, vec_char))`
+
+- mean of vec_factor is `r mean(pull(homework_df, vec_factor))`
+
+- mean of norm_sample is `r mean(pull(homework_df, norm_sample))`
+
+- mean of norm_sample_pos is `r mean(pull(homework_df,norm_sample_pos))`
+
+I notice that the mean of the factor variable is not being calculated because it is not "numeric or logical". The other variables do produce a mean. 
 
 
+```{r applying the numeric function, eval=FALSE}
+as.numeric(pull(homework_df,vec_char))
+as.numeric(pull(homework_df,vec_factor))
+as.numeric(pull(homework_df,norm_sample))
+as.numeric(pull(homework_df,norm_sample_pos))
+
+?as.numeric
+```
+When the `as.numeric` function is applied to the different variables I noticed that for vec_char all the values are the same (1), this is because all the values in the data frame are 1 due to the fact that I did not specify what the contents of it should be only that it be 10 items long. 
 
 
+For vec_factor the values are 1, 2 or 3, this is because it only has three levels as established at the creation. 
 
 
+In the norm_sample all the numbers are numeric, this is because the numbers were derived from a random sample.
 
 
+In the norm_sample_pos variable the value is either 1 or 0, this i because the response to the variable is TRUE or FALSE, it is a binary variable therefore the only two numeric options are 0 or 1. 
+
+This explains the values seen in the mean, it seems that when the mean is calculated, the variables are forcefully interpreted as numeric. 
 
 
